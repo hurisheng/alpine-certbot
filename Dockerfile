@@ -3,7 +3,7 @@ FROM alpine:latest
 LABEL author="hurisheng"
 
 # only openvpn package is required, bash is for cloud service only
-RUN apk update && apk add bash certbot
+RUN apk update && apk add bash certbot openssl
 
 # setup certificates renewal cron job, weekly
 COPY ./certbot_renewal /etc/periodic/weekly
