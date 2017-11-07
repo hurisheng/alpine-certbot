@@ -8,6 +8,6 @@ RUN apk add --no-cache bash certbot openssl
 # setup certificates renewal cron job, weekly
 COPY ./certbot_renewal /etc/periodic/weekly/
 
-VOLUME ["/etc/letsencrypt"]
+VOLUME [ "/etc/letsencrypt", "/var/lib/letsencrypt", "/var/log/letsencrypt" ]
 
-CMD ["crond", "-f"]
+CMD [ "crond", "-f" ]
