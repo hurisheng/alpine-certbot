@@ -8,6 +8,6 @@ RUN apk add --no-cache bash certbot py2-future
 # setup certificates renewal cron job, weekly
 COPY ./certbot_renewal /etc/periodic/daily/
 
-VOLUME [ "/etc/letsencrypt", "/opt" ]
+VOLUME [ "/etc/letsencrypt", "/opt/html" ]
 
 CMD [ "crond", "-f" ]
