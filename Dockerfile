@@ -1,13 +1,13 @@
-FROM alpine:latest
+FROM alpine:3.7
 
 LABEL author="hurisheng"
 
-# only openvpn package is required, bash is for cloud service only
-RUN apk add --no-cache bash certbot openssl
+# bash is for cloud service only, certbot dependencies missed py2-future
+RUN apk add --no-cache bash certbot py2-future
 
 # setup certificates renewal cron job, weekly
-COPY ./certbot_renewal /etc/periodic/weekly/
+COPY ./certbot_renewal /etc/periodic/daily/
 
-VOLUME [ "/etc/letsencrypt" ]
+VOLUME [ "/etc/letsencrypt", "/opt" ]
 
 CMD [ "crond", "-f" ]
